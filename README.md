@@ -19,10 +19,6 @@
 [打开baidu](http://baidu.com)
 
 ---------
-# Image
-![github](./img/1.jpg "花朵")
-
-------------
 
 # bold
 
