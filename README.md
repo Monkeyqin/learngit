@@ -71,6 +71,33 @@ var { a = 2} = { a : null};     // a=null
 如果属性等于null，就不严格等于Undefined,则默认值就不生效。
 
 
+### (3).字符串的解构赋值
+字符串被转换成一个类似数组的对象。
+```
+   let [a,b,c,d,e]="hello";
+   console.log(a,b,c,d,e);
+```
+
+### (4).布尔值的解构赋值
+如果等号右边是数值或布尔值，就先转换为对象。
+```
+  let {toString : s } = 123;
+  s == Number.prototype.toString   //true
+
+  let { toString : s } = true;
+  s == Boolean.prototype.toString    //true
+```
+以上代码可以看出，Number和Boolean的包装对象都有toString属性，因此变量s能够取到值。
+
+### (5).函数参数的解构赋值
+```
+  function add([x,y]){
+    return x+y;
+  }
+  add([2,3]);     //5
+```
+
+
 
 
 
