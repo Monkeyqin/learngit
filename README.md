@@ -430,5 +430,58 @@ proto属性用来设置当前对象的prototype属性。在实现上,proto调用
 
 
 ## Symbol
-ES6新增了一种数据类型叫symbol,表示独一无二的值;是第七种数据类型。
-如果Symbol的参数是一个对象,那么就会调用该对象的方法。
+### 1.知识点
+ES6新增了一种数据类型叫symbol,表示独一无二的值;是第七种数据类型;
+如果Symbol的参数是一个对象,那么就会调用该对象的方法;
+Symbol参数是对当前Symbol值的描述,因此相同参数返回的返回值是不一样的;
+Symbol值可以转为Boolean值,不能转为数值。
+
+### 2.作为属性名的symbol
+symbol作为对象属性名时不能使用点运算符;symbol类型还可以定义一组常量,保证这组常量的值是不相等的。
+symbol作为属性名时是公开属性,不是私有属性。
+
+### 3.属性名的遍历
+symbol作为属性名,该属性不出现在for...of.../for...in...循环中,也不会出现在Object.keys()/Object.getOwnPropertyNames()/JSON.stringify()返回;但是有一种Object.getOwnPropertySymbols()方法,该方法可以获取指定对象的所有symbol属性名。
+
+### 4.symbol.for();
+该方法接受一个字符串的参数,然后搜索到有没有以此参数作为symbol的值,如果有就返回这个symbol值。
+symbol.for()和symbol()这两种方法都会返回一个新的symbol值,前者是在全局中搜索,而后者不会;
+symbol.for()方法不会每次调用都返回一个新的值,而是先查询keys值是否存在,若不存在才会返回一个新的值。
+
+### 5.symbol.keyFor();
+该方法返回一个已登记的symbol类型值的key。
+
+### 6.内置symbol值
+ES6提供了11个内置symbol值,指向语言内部的方法。
+
+
+## Set和Map数据结构
+### Set
+它类似于数组,但是数值都是唯一,没有重复的值。
+```
+[...new Set(array)]  //除去数组的重复值
+```
+在Set内部,2个NaN是相等的;由于2个空对象不相等,那么相当于2个不同的值。
+Array.from()可以将set解构转换为数组。
+Array.from(new Set(array));    //并且除去数组的重复值
+
+
+#### 1.遍历操作
+keys()：返回键名的遍历器
+values()：返回键值的遍历器
+entries()：返回键值对的遍历器
+forEach()：使用回调函数遍历每个成员
+
+#### 2.遍历的应用
+扩展符(...)内部使用的是for...of循环,可以用于set结构。
+
+### Map
+它类似与对象,也有键值对的集合,但"键"的范围不限于字符串，各种类型的值(或对象)也能称为值。
+
+
+## Proxy
+Proxy这个词的原意是代理,在这里用来表示代理某些操作,也可译为代理器。
+ES6提供Proxy构造函数,用来生成Proxy的实例对象。
+```
+  let proxy = new Proxy ( target ,handler );
+```
