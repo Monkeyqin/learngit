@@ -485,3 +485,70 @@ ES6提供Proxy构造函数,用来生成Proxy的实例对象。
 ```
   let proxy = new Proxy ( target ,handler );
 ```
+### this问题
+在proxy代理的情况下,this关键字是指的proxy代理。
+
+## promise
+### promise的含义
+它是一个对象,从它可以获取异步操作的消息。
+#### promise对象的特点:
++ 对象自身的状态不受外界的影响;promise对象代表一个异步操作,有三种状态:Pending(进行中)/resolve(已完成)/rejected(已失败),只有异步操作的结果才可以决定当前是哪种状态,任何其他操作都改变不了这个状态。
++ 一旦状态改变,结果就不会改变,任何时候都能得到状态的结果。
++ 当处于Pending状态,无法得到目前进展到哪一个阶段。
+
+Promise对象创建就会立即执行。
+
+### Promise.prototype.then();
+Promise实例具有then对象,也就是说,then是定义在Promise.prototype原型对象上,它的作用是为Promise实例添加状态改变时的回调函数;
+第一个参数是resolve状态的回调函数,第二个是rejected状态的回调函数。
+then方法返回的是一个新的promise实例,因此可以采用链式写法,即then方法后调用另一个then方法。
+
+### Promise.prototype.catch();
+该方法用来制定发生错误时的回调函数。如果Promise对象的状态是resolve,那么这时抛出的错误是无效的。
+
+### Promise.all();
+该方法用于将多个Promise实例,包装成新的Promise实例。
+
+### Promise.race();
+该方法也是用于将多个Promise实例,包装成新的Promise实例。
+
+### Promise.resolve();
+该方法是把现有对象转化为Promise对象。Promise.resolve()方法的参数返回4种情况:
++ 参数是Promise实例(该方法将不做任何修改,原封不动的返回这个实例)
++ 参数是thenable对象(thenable对象是指具有then的方法)
++ 参数不是具有then方法的对象,或根本就不是对象(Promise.resolve()方法则返回一个新的Promise实例,状态为resolve)
++ 不带任何参数(Promise.resolve()方法允许调用时参数为空,直接返回一个状态为resolve的promise对象)
+
+### Promise.rejected();
+该方法也是返回一个新的Promise实例,该实例的状态是rejected;该方法的参数会原封不动的作为reject的理由,变成后续方法的参数。
+
+
+
+## Iterator和for...of..循环
+### Iterator遍历器
+它是一个遍历器接口,为不同数据结构提供统一的访问机制。它的本质也是一个指针对象。
++ 第一次调用指针对象的next方法,可以指向数据结构的第一个成员
++ 第二次调用指针对象的next方法,可以指向数据结构的第二个成员
++ 不断调用next方法,直到它指向数据结构结束的位置
+
+### 默认Iterator接口
+Iterator接口的目的是指:为所有数据结构,提供统一的访问机制,即是for...of..循环。
+当for...of..循环遍历某种数据结构时,该循环会自动去找iterator接口。
+#### ES6规定,默认的Iterator接口部署在Symbol.Iterator属性;一个数据结构只要有该属性,说明该数据结构是"可遍历"的;Symbol.Iterator属性本身是一个函数,就是指的当前数据结构默认的遍历器生成函数。凡是部署了Symbol.Iterator的属性,就称为部署了遍历器接口。
+
+原生具备iterator接口的数据结构:
++ Map/Set/String/Array/函数的argument对象
+
+### 调用Iterator接口的场合
++ 解构赋值(对数组或Set结构进行赋值)
++ 扩展运算符
+
+### 字符串的Iterator接口
+字符串是一个类似数组对象,原生具有iterator接口。
+
+### for...of..循环
+该循环用于遍历所有数据结构的统一方法;该循环内部调用的是数据结构的Symbol.iterator方法。
+该循环只返回含有数字索引的属性。
+
+### Set和Map结构
+这2种结构也具有iterator接口。
