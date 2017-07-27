@@ -552,3 +552,29 @@ Iterator接口的目的是指:为所有数据结构,提供统一的访问机制,
 
 ### Set和Map结构
 这2种结构也具有iterator接口。
+
+
+## Generator函数的语法
+在语法上,Generator函数是一个状态机,封装了多个内部状态;在形式上,Generator函数是一个普通的函数,有2个不同的特征:
++ function关键字与函数名之间有一个*符号
++ 函数体内使用yield表达式
+Generator函数是分段执行的,yield表达符是暂停执行标记,而next表达式是可以恢复继续执行。
+
+### yield表达式
+该表达式指的是可暂停执行的函数。
++ 遇到yield表达式,就暂停执行后面的操作,并将紧跟yield后的表达式的值作为返回对象的value属性值。
++ 下次调用next方法时,再继续往下执行,直到遇到下一个yield表达式。
++ 如果没有再遇到新的yield表达式，就一直运行到函数结束，直到return语句为止，并将return语句后面的表达式的值，作为返回的对象的value属性值。
++ 如果该函数没有return语句,则返回的对象的value值就是Undefined。
++ yield表达式只能使用在Generator函数中,用在其他地方都会报错。
++ yield表达式用在其他表达式中,必须放在圆括号中。
+
+### 与Iterator接口的关系
+由于Generator函数就是遍历器生成的函数,因此可以把Generator赋值给对象的Symbol.iterator属性上,使得该对象具有Iterator接口。
+
+### Generator中的for...of..循环
+for..of..循环可以自动遍历Generator函数生成的Iterator的对象,且不需要调用next方法。
+
+### Generator.prototype.throw();
+Generator函数返回的遍历器对象,都含有throw()方法,可以在函数体外抛出错误,并在Generator函数体内捕获。
+throw();方法可以接收一个参数,该参数会被catch语句接收,建议抛出Error实例。
