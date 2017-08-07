@@ -30,7 +30,7 @@ npm(node pakeage manager)是node.js的包管理器,用于node插件管理(安装
 本地安装gulp的命令 cnpm install gulp -D
 
 ### 本地安装gulp插件
-本地安装gulp的命令 cnpm install -D
+本地安装gulp插件的命令 cnpm install 插件名  -D
 
 ### 新建pakeage.JSON
 pakeage.json文件是基于nodejs中的配置文件,它是存放在项目根目录的普通json文件
