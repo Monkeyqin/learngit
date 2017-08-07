@@ -19,7 +19,8 @@ npm(node pakeage manager)是node.js的包管理器,用于node插件管理(安装
 
 ### 选装cnpm
 这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。
-+ 命令提示符执行npm install cnpm -g --registry=https://registry.npm.taobao.org；注意：安装完后最好查看其版本号cnpm -v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误,cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）
++ 命令提示符执行npm install cnpm -g --registry=https://registry.npm.taobao.org；
+注意：安装完后最好查看其版本号cnpm -v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误,cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）
 
 ### 全局安装gulp
 全局安装gulp的目的是为了通过它执行gulp任务。
