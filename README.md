@@ -578,3 +578,34 @@ for..of..循环可以自动遍历Generator函数生成的Iterator的对象,且�
 ### Generator.prototype.throw();
 Generator函数返回的遍历器对象,都含有throw()方法,可以在函数体外抛出错误,并在Generator函数体内捕获。
 throw();方法可以接收一个参数,该参数会被catch语句接收,建议抛出Error实例。
+
+
+## Generator函数的异步调用
+### 传统的异步调用方法
+回调函数/事件监听/发布.订阅/Promise对象
+
+### 协程
+协程是指多个线程互相合作,完成异步任务。协程有点像函数,也有点像线程。
+
+### Generator函数的数据交换和错误处理
+next返回值的value属性,是Generator函数向外输出的数据,next还可以接收参数,向Generator函数中输入参数。
+Generator函数内部可以部署错误处理代码,捕获函数体外抛出的错误。
+
+### Thunk函数
+Thunk函数是自动执行Generator函数的一种方式。Thunk函数的含义是指:先将参数传入一个临时函数中,再将这个临时函数传入函数体,这个临时函数是指的Thunk函数。该函数是一种"传名调用"的策略,用来替换某个表达式。
++ 一种意见是"传值调用"
++ 一种意见是"传名调用"
+
+### JavaScript函数中的Thunk函数
+在Js函数中,Thunk函数替换的不是表达式,而是多参数函数,将其替换成一个只接受回调函数作为参数的单参数函数。
+
+### Generator的流程管理
+Generator函数可以自动执行。
+
+### co 模块
+该模块用于Generator函数自动执行。co方法返回一个Promise对象,因此可以用then方法添加回调函数。
+co模块的原理:当异步操作有了执行结果,就自动交回执行权。
+两个方法可以做到这一点:
++ 回调函数(将异步操作包装成Thunk函数,在回调函数里交回执行权)
++ Promise对象(将异步操作包装成Promise对象,在then方法的回调函数中交回执行权)
+co模块是将2种自动执行器,包装成一个模块;使用co模块的前提是:Generator函数中的yield表达式后只能是Thunk函数或者是Promise对象。
