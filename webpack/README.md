@@ -3,9 +3,9 @@ webpack是模块化打包工具。
 
 ## 使用步骤
   + 1.全局安装webpack
-    ```
-      npm install -g webpack
-    ```
+  ```
+    npm install -g webpack
+  ```
   + 2.npm配置pakeage.json  
   ```
      npm init
