@@ -27,3 +27,9 @@ moudle.exports={
 }
 
 ```
+
+## webpack配置文件
+```
+    entry: string 单个入口单独文件 | object 多个入口多个文件 | array 多个入口合并在一个文件中
+    
+```
