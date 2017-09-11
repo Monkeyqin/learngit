@@ -46,12 +46,39 @@ moudle.exports={
     module:{
       rules:[
           {
+            test:/\.js/,
+            use:{
+              loader:"babel-loader",
+              exclude:path.resolve(__dirname,'/node_modules/') ,
+              include:path.resolve(__dirname,'./src/'),
+              options:{
+                preset:["es2015"]
+              }
+            }
+            },
+          {
             test:/\.html/,
             use:{
               loader:"html-loader",    
               options:{
-
               }
+            },
+            {
+              test:/\.css/,
+              exclude:path.resolve(__dirname,'/node_modules/') ,
+              include:path.resolve(__dirname,'./src/'),
+              use:[
+                  {loader:"css-loader"},
+                  {loader:"style-loader"},
+                  {
+                    loader:"postcss-loader",
+                    options:{
+                      plugins:(loader)=>{
+                            require('autoprefixer')();
+                      }
+                    }
+                  }
+              ]
             }
           }
       ]
