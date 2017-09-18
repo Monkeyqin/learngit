@@ -64,20 +64,20 @@ moudle.exports={
               }
             },
             {
-              test:/\.css/,
+              test:/\.css$/,
               exclude:path.resolve(__dirname,'/node_modules/') ,
               include:path.resolve(__dirname,'./src/'),
               use:[
-                  {loader:"css-loader"},
-                  {loader:"style-loader"},
-                  {
-                    loader:"postcss-loader",
-                    options:{
-                      plugins:(loader)=>{
-                            require('autoprefixer')();
-                      }
-                    }
-                  }
+                {loader:"style-loader"},
+                {loader:"css-loader"}
+              ]
+            },
+            {
+              test:/\.less$/,
+              use:[
+                {loader:'style-loader'},
+                {loader:"css-loader"},
+                {loader:"less-loader"}
               ]
             }
           }
